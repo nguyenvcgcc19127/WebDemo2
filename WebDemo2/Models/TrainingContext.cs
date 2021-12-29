@@ -1,0 +1,26 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Linq;
+
+namespace WebDemo2.Models
+{
+    public partial class TrainingContext : DbContext
+	{
+		public TrainingContext()
+			: base("name=TrainingContext1")
+		{
+		}
+
+		public virtual DbSet<Category> Categories { get; set; }
+		public virtual DbSet<Cours> Courses { get; set; }
+
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<Category>()
+				.HasMany(e => e.Courses)
+				.WithRequired(e => e.Category)
+				.WillCascadeOnDelete(false);
+		}
+	}
+}
