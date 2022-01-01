@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebDemo2.Models;
 
 namespace WebDemo2.Controllers
@@ -18,18 +22,12 @@ namespace WebDemo2.Controllers
             return View(list);
         }
 
-        [HttpGet]
-        public ActionResult Create()
-        {
-
-            return View();
-        }
-
         public ActionResult Login()
         {
 
             return View();
         }
+
         [HttpPost]
         public ActionResult Login([Bind(Include = "Email, Password")] Staff staff)
         {
@@ -38,26 +36,67 @@ namespace WebDemo2.Controllers
             if (acc != null)
             {
                 Session["Email"] = acc.Email;
-                return RedirectToAction("index", "Home");
+                Session["Admin"] = acc.Admin;
+                return RedirectToAction("Index", "Home");
             }
             else
             {
                 return RedirectToAction("Index", "Login");
             }
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
 
             return View();
         }
 
-            [HttpPost]
+        [HttpPost]
         public ActionResult Create([Bind(Include = "Staff_ID, Staff_Name, Email, Age, Address, Password, Admin")] Staff staff)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Staffs.Add(staff);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    staff.Password = EncodePassword(staff.Password);
+                    db.Staffs.Add(staff);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+                return View(staff);
             }
-            return View(staff);
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+        }
+
+        public static string EncodePassword(string Password)
+        {
+            //Declarations
+            Byte[] originalBytes;
+            Byte[] encodedBytes;
+            MD5 md5;
+
+            //Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)
+            md5 = new MD5CryptoServiceProvider();
+            originalBytes = ASCIIEncoding.Default.GetBytes(Password);
+            encodedBytes = md5.ComputeHash(originalBytes);
+
+            //Convert encoded bytes back to a 'readable' string
+            return BitConverter.ToString(encodedBytes);
         }
 
         [HttpGet]

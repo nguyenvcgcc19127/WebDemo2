@@ -16,14 +16,22 @@ namespace WebDemo2.Controllers
         // GET: Category
         public ActionResult Index()
         {
-            var list = db.Categories.ToList<Category>();
-            return View(list);
+/*            if (Session["Admin"] != null && Session["Admin"].ToString() != "1")
+            {
+                return RedirectToAction("About", "Home");
+            }
+            else
+            {*/
+                var list = db.Categories.ToList<Category>();
+                return View(list);
+/*            }*/
+
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-
+            
             return View();
         }
 

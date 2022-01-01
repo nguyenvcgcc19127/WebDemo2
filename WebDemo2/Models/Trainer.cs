@@ -38,7 +38,7 @@ namespace WebDemo2.Models
         public string Address { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(50)]
         public string Password { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

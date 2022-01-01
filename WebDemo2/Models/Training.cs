@@ -20,8 +20,6 @@ namespace WebDemo2.Models
         public virtual DbSet<Trainee_Course> Trainee_Course { get; set; }
         public virtual DbSet<Trainer> Trainers { get; set; }
         public virtual DbSet<Trainer_Course> Trainer_Course { get; set; }
-        public object Category { get; internal set; }
-        public object Staff { get; internal set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -38,7 +36,7 @@ namespace WebDemo2.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Category>()
-                .HasMany(e => e.Course)
+                .HasMany(e => e.Courses)
                 .WithRequired(e => e.Category)
                 .HasForeignKey(e => e.Course_Category)
                 .WillCascadeOnDelete(false);

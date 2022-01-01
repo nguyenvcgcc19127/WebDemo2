@@ -12,7 +12,7 @@ namespace WebDemo2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            Course = new HashSet<Course>();
+            Courses = new HashSet<Course>();
         }
 
         [Key]
@@ -28,6 +28,6 @@ namespace WebDemo2.Models
         public string Description { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Course { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

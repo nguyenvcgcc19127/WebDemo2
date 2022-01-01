@@ -9,46 +9,71 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<table class="table table-striped" id="table1">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.No)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Course_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Trainee_ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Trainee_Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.No)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Course_ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Trainee_ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Trainee_Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.No }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.No }, new { onclick = "return confirm('Are you sure you wish to delete this cat?');" })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Traiee Course/h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.No)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Course_ID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Trainee_ID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Trainee_Name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.No)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Course_ID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Trainee_ID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Trainee_Name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.No)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Course_ID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trainee_ID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trainee_Name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.No }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.No }, new { onclick = "return confirm('Are you sure to delete?');" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -28,7 +28,7 @@ namespace WebDemo2.Models
         public string Address { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(50)]
         public string Password { get; set; }
 
         public int Admin { get; set; }

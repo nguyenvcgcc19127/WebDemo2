@@ -25,6 +25,23 @@ namespace WebDemo2.Controllers
 
             return View();
         }
+
+        public ActionResult ViewProfile()
+        {
+            
+            return View();
+        }
+
+        public ActionResult EditViewProfile(string id)
+        {
+            Trainer trainer = db.Trainers.Find(id);
+/*            if (trainer != null)*/
+                return View(trainer);
+/*            else
+                return RedirectToAction("Index", "Home");*/
+        }
+
+
         [HttpPost]
         public ActionResult Login([Bind(Include = "Email, Password")] Trainer trainer)
         {
@@ -33,7 +50,7 @@ namespace WebDemo2.Controllers
             if (acc != null)
             {
                 Session["Email"] = acc.Email;
-                return RedirectToAction("index", "Home");
+                return RedirectToAction("Index", "Home");
             }
             else
             {

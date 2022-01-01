@@ -2075,6 +2075,10 @@
     <Content Include="Views\Trainer_Course\Edit.cshtml" />
     <Content Include="Views\Trainee\Login.cshtml" />
     <Content Include="Views\Trainer\Login.cshtml" />
+    <Content Include="Views\Trainer\ViewProfile.cshtml" />
+    <Content Include="Views\Trainer\EditViewProfile.cshtml" />
+    <Content Include="Views\Home\LoginManagement.cshtml" />
+    <Content Include="Views\Home\ProfileManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
