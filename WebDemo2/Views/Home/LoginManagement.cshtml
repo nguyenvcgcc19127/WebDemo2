@@ -7,19 +7,21 @@
 <h2>Login Management</h2>
 
 
+<a href="@Url.Action("LoginProcess", "Home", new { id = "Staff"})">
+    <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-">
+        Staff
+    </button>
+</a>
 
-@*<button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
-    Trainer
-    
-</button>*@
-<a href="@Url.Action("LoginProcess", "Home", new { id = "Trainer"})">Trainer</a>
-@*<button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
-    Trainee 
-    <a href="@Url.Action("LoginProcess", "Home", new { id = "Trainee" })"></a>
-</button>*@
-<a href="@Url.Action("LoginProcess", "Home", new { id = "Trainee" })"></a>
-@*<button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
-    Staff
-    <a href="@Url.Action("LoginProcess", "Home", new { id = "Staff"})></a>
-</button>*@
-<a href="@Url.Action("LoginProcess", "Home", new { id = "Staff"})">Staff</a>
+<a href="@Url.Action("LoginProcess", "Home", new { id = "Trainee" })">
+    <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
+        Trainer
+    </button>
+</a>
+
+<a href="@Url.Action("LoginProcess", "Home", new { id = "Trainee" })">
+    <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
+        Trainee
+    </button>
+</a>
+

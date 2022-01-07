@@ -25,12 +25,12 @@
 </head>
 
 <body id="page-top">
-@*    @{
+    @{
         if (HttpContext.Current.Session["Email"] == null)
         {
             Response.Redirect("~/Home/LoginManagement");
         }
-    }*@
+    }
 
 
     <!-- Page Wrapper -->
@@ -44,59 +44,67 @@
                 <div><img src="~/img/uog.png" width="100%"></div>
             </a>
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                   aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Menu</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        @if (HttpContext.Current.Session["Admin"] != null && HttpContext.Current.Session["Admin"].ToString() == "1")
-                        {
-                            <a class="collapse-item" href="@Url.Action("Index", "Trainer")">Trainer</a>
-                            <a class="collapse-item" href="@Url.Action("Index", "Staff")">Staff</a>
-                        }
-                        @if (HttpContext.Current.Session["Admin"] != null && HttpContext.Current.Session["Admin"].ToString() == "1")
-                        {
-                            <a class="collapse-item" href="@Url.Action("Index", "Category")">Category</a>
-                            <a class="collapse-item" href="@Url.Action("Index", "Category")">Category</a>
-                            <a class="collapse-item" href="@Url.Action("Index", "Course")">Course</a>
-                            <a class="collapse-item" href="@Url.Action("Index", "Topic")">Topic</a>
-                            <a class="collapse-item" href="@Url.Action("Index", "Trainee")">Trainee</a>
-                            <a class="collapse-item" href="@Url.Action("Index", "Trainee_Course")">Trainee Course</a>
-                            <a class="collapse-item" href="@Url.Action("Index", "Trainer_Course")">Trainer Course</a>
-                        }
+            @if (HttpContext.Current.Session["Admin"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                       aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Menu</span>
+                    </a>
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            @if (HttpContext.Current.Session["Admin"] != null && HttpContext.Current.Session["Admin"].ToString() == "1")
+                            {
+                                <a class="collapse-item" href="@Url.Action("Index", "Trainer")">Trainer</a>
+                                <a class="collapse-item" href="@Url.Action("Index", "Staff")">Staff</a>
+                            }
+                            @if (HttpContext.Current.Session["Admin"] != null && HttpContext.Current.Session["Admin"].ToString() == "0")
+                            {
+                                <a class="collapse-item" href="@Url.Action("Index", "Category")">Category</a>
+                                <a class="collapse-item" href="@Url.Action("Index", "Course")">Course</a>
+                                <a class="collapse-item" href="@Url.Action("Index", "Topic")">Topic</a>
+                                <a class="collapse-item" href="@Url.Action("Index", "Trainee")">Trainee</a>
+                                <a class="collapse-item" href="@Url.Action("Index", "Trainee_Course")">Trainee Course</a>
+                                <a class="collapse-item" href="@Url.Action("Index", "Trainer_Course")">Trainer Course</a>
+                            }
                         </div>
+                    </div>
+                </li>
+                }
+                <li class="nav-item active">
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>View Course</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-phone"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-exclamation"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Contact</span>
-                </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>About</span>
-                </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+            </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -115,7 +123,7 @@
                     </form>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <!--<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                    aria-label="Search" aria-describedby="basic-addon2">
@@ -125,7 +133,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form>-->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -164,15 +172,19 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
+                                @if (HttpContext.Current.Session["Admin"] == null)
+                                {
                                     <a class="dropdown-item" href="@Url.Action("ViewProfile", "Trainer")">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Profile
+                                    </a>
                                     <div class="dropdown-divider"></div>
+                                }
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Logout
                                     </a>
-                            </div>
+                                </div>
                         </li>
 
                     </ul>

@@ -26,10 +26,13 @@ namespace WebDemo2.Controllers
             return View();
         }
 
-        public ActionResult ViewProfile()
+        public ActionResult ViewProfile(string id)
         {
-            
-            return View();
+            var xFind = db.Trainers.Find(id);
+            if (xFind != null)
+                return View(xFind);
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         public ActionResult EditViewProfile(string id)

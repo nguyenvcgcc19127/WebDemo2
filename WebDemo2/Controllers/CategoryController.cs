@@ -16,7 +16,7 @@ namespace WebDemo2.Controllers
         // GET: Category
         public ActionResult Index()
         {
-            if (Session["Admin"] != null && Session["Admin"].ToString() != "1")
+            if (Session["Admin"] != null && Session["Admin"].ToString() != "0")
             {
                 return RedirectToAction("About", "Home");
             }

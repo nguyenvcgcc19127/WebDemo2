@@ -33,7 +33,7 @@ namespace WebDemo2.Controllers
         {
             Staff acc = new Staff();
             acc = db.Staffs.Where(p => p.Email == staff.Email && p.Password == p.Password).FirstOrDefault();
-            if (acc != null && ModelState.IsValid)
+            if (acc != null)
             {
                 Session["Email"] = acc.Email;
                 Session["Admin"] = acc.Admin;
