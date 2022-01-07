@@ -5,60 +5,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Profile</h2>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h1 class="m-0 font-weight-bold text-primary">Profile</h1>
+    </div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Trainer_Name)
+            </dt>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Trainer_Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Trainer_Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Trainer_Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Specialty)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Specialty)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Specialty)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Specialty)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Age)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-    </dl>
+        </dl>
 </div>
 <p>
 @*    @Html.ActionLink("Edit", "Edit", new { id = Model.Trainer_ID }) |

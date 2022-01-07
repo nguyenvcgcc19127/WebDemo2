@@ -30,11 +30,18 @@ namespace WebDemo2.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "No, Course_ID, Trainer_ID, Trainer_Name")] Trainer trainer)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Trainers.Add(trainer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Trainers.Add(trainer);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Duplicate No!");
             }
             return View(trainer);
         }

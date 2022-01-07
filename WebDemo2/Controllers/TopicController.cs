@@ -26,11 +26,18 @@ namespace WebDemo2.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "Topic_ID, Topic_Name, Course_ID")] Topic topic)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Topics.Add(topic);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Topics.Add(topic);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Duplicate ID!");
             }
             return View(topic);
         }

@@ -17,7 +17,7 @@ namespace WebDemo2.Models
         [StringLength(50)]
         public string Staff_Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter Email!")]
         [StringLength(50)]
         public string Email { get; set; }
 

@@ -33,7 +33,7 @@ namespace WebDemo2.Controllers
         {
             Staff acc = new Staff();
             acc = db.Staffs.Where(p => p.Email == staff.Email && p.Password == p.Password).FirstOrDefault();
-            if (acc != null)
+            if (acc != null && ModelState.IsValid)
             {
                 Session["Email"] = acc.Email;
                 Session["Admin"] = acc.Admin;
@@ -41,6 +41,7 @@ namespace WebDemo2.Controllers
             }
             else
             {
+                ModelState.AddModelError("", "Email or password is incorrect!");
                 return RedirectToAction("Index", "Login");
             }
         }
@@ -63,24 +64,13 @@ namespace WebDemo2.Controllers
                     db.Staffs.Add(staff);
                     db.SaveChanges();
                     return RedirectToAction("Index");
-
                 }
-                return View(staff);
             }
-            catch (DbEntityValidationException e)
+            catch
             {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                throw;
+                ModelState.AddModelError("", "Duplicate ID!");
             }
+            return View(staff);
         }
 
         public static string EncodePassword(string Password)

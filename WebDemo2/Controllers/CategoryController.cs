@@ -16,15 +16,15 @@ namespace WebDemo2.Controllers
         // GET: Category
         public ActionResult Index()
         {
-/*            if (Session["Admin"] != null && Session["Admin"].ToString() != "1")
+            if (Session["Admin"] != null && Session["Admin"].ToString() != "1")
             {
                 return RedirectToAction("About", "Home");
             }
             else
-            {*/
+            {
                 var list = db.Categories.ToList<Category>();
                 return View(list);
-/*            }*/
+            }
 
         }
 
@@ -38,11 +38,18 @@ namespace WebDemo2.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "Category_ID, Category_Name, Description")] Category category)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Categories.Add(category);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("","Duplicate ID!");
             }
             return View(category);
         }

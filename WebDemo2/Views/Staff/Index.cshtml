@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Staff</h6>
+        <h1 class="m-0 font-weight-bold text-primary">Staff</h1>
+    </div>
+    <div class="card-header py-2">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -68,7 +68,7 @@
                         </th>
                         <th></th>
                     </tr>
-                </tfoot >
+                </tfoot>
                 <tbody>
                     @foreach (var item in Model)
                     {

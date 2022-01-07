@@ -54,10 +54,9 @@ namespace WebDemo2.Controllers
             }
             else
             {
+                ModelState.AddModelError("", "Email or password is incorrect!");
                 return RedirectToAction("Index", "Login");
             }
-
-            return View();
         }
 
         [HttpGet]
@@ -70,11 +69,18 @@ namespace WebDemo2.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "Trainer_ID, Trainer_Name, Email, Specialty, Age, Address, Password")] Trainer trainer)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Trainers.Add(trainer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Trainers.Add(trainer);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Duplicate ID!");
             }
             return View(trainer);
         }
