@@ -1,7 +1,7 @@
 ﻿@model WebDemo2.Models.Trainee
 @{
     ViewBag.Title = "ViewProfile";
-    Layout = "~/Views/Trainee/Create.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="card shadow mb-4">
@@ -55,11 +55,4 @@
         </dd>
 
     </dl>
-</div>
-<div class="col-12 d-flex justify-content-end">
-    <a class="nav-link" href="@Url.Action("EditViewProfile", "Trainer", new { id = Model.Trainee_ID })">
-        <button type="submit" class="btn btn-primary me-1 mb-1">
-            Edit
-        </button>
-    </a>
 </div>
