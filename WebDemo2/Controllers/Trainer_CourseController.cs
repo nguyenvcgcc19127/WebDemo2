@@ -13,10 +13,10 @@ namespace WebDemo2.Controllers
     public class Trainer_CourseController : Controller
     {
         Training db = new Training();
-        // GET: Trainer
+        // GET: Trainer_Course
         public ActionResult Index()
         {
-            var list = db.Trainers.ToList<Trainer>();
+            var list = db.Trainer_Course.ToList<Trainer_Course>();
             return View(list);
         }
 
@@ -28,13 +28,13 @@ namespace WebDemo2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "No, Course_ID, Trainer_ID, Trainer_Name")] Trainer trainer)
+        public ActionResult Create([Bind(Include = "No, Course_ID, Trainer_ID, Trainer_Name")] Trainer_Course trainer)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Trainers.Add(trainer);
+                    db.Trainer_Course.Add(trainer);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -49,13 +49,13 @@ namespace WebDemo2.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            Trainer trainer = db.Trainers.Find(id);
+            Trainer_Course trainer = db.Trainer_Course.Find(id);
 
             return View(trainer);
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "No, Course_ID, Trainer_ID, Trainer_Name")] Trainer trainer)
+        public ActionResult Edit([Bind(Include = "No, Course_ID, Trainer_ID, Trainer_Name")] Trainer_Course trainer)
         {
             if (ModelState.IsValid)
             {
@@ -71,9 +71,9 @@ namespace WebDemo2.Controllers
         public ActionResult Delete(string id)
         {
 
-            Trainer trainer = db.Trainers.Find(id);
+            Trainer_Course trainer = db.Trainer_Course.Find(id);
 
-            db.Trainers.Remove(trainer);
+            db.Trainer_Course.Remove(trainer);
 
             db.SaveChanges();
 

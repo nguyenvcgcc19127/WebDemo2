@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using WebDemo2.Models;
@@ -18,7 +20,14 @@ namespace WebDemo2.Controllers
             return View(list);
         }
 
-        
+        [HttpGet]
+        public ActionResult ViewProfile()
+        {
+            Trainee trainee = db.Trainees.ToList().Find(o => o.Email == Session["Email"].ToString());
+
+            return View(trainee);
+        }
+
 
         public ActionResult Login()
         {
@@ -32,8 +41,9 @@ namespace WebDemo2.Controllers
             acc = db.Trainees.Where(p => p.Email == trainee.Email && p.Password == p.Password).FirstOrDefault();
             if (acc != null)
             {
+                Session["Trainee"] = acc.Trainee_ID;
                 Session["Email"] = acc.Email;
-                return RedirectToAction("index", "Home");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -56,6 +66,7 @@ namespace WebDemo2.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    trainee.Password = EncodePassword(trainee.Password);
                     db.Trainees.Add(trainee);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -66,6 +77,22 @@ namespace WebDemo2.Controllers
                 ModelState.AddModelError("", "Duplicate ID!");
             }
             return View(trainee);
+        }
+
+        public static string EncodePassword(string Password)
+        {
+            //Declarations
+            Byte[] originalBytes;
+            Byte[] encodedBytes;
+            MD5 md5;
+
+            //Instantiate MD5CryptoServiceProvider, get bytes for original password and compute hash (encoded password)
+            md5 = new MD5CryptoServiceProvider();
+            originalBytes = ASCIIEncoding.Default.GetBytes(Password);
+            encodedBytes = md5.ComputeHash(originalBytes);
+
+            //Convert encoded bytes back to a 'readable' string
+            return BitConverter.ToString(encodedBytes);
         }
 
         [HttpGet]
@@ -81,6 +108,7 @@ namespace WebDemo2.Controllers
         {
             if (ModelState.IsValid)
             {
+                trainee.Password = EncodePassword(trainee.Password);
                 db.Entry(trainee).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -93,7 +93,6 @@ namespace WebDemo2.Controllers
         public ActionResult Edit(string id)
         {
             Staff staff = db.Staffs.Find(id);
-
             return View(staff);
         }
 
@@ -102,6 +101,7 @@ namespace WebDemo2.Controllers
         {
             if (ModelState.IsValid)
             {
+                staff.Password = EncodePassword(staff.Password);
                 db.Entry(staff).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

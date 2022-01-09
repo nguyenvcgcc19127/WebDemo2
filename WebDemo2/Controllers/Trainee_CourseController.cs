@@ -16,7 +16,7 @@ namespace WebDemo2.Controllers
         // GET: Trainee
         public ActionResult Index()
         {
-            var list = db.Trainees.ToList<Trainee>();
+            var list = db.Trainee_Course.ToList<Trainee_Course>();
             return View(list);
         }
 
@@ -28,13 +28,13 @@ namespace WebDemo2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "No, Course_ID, Trainee_ID, Trainee_Name")] Trainee trainee)
+        public ActionResult Create([Bind(Include = "No, Course_ID, Trainee_ID, Trainee_Name")] Trainee_Course trainee)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Trainees.Add(trainee);
+                    db.Trainee_Course.Add(trainee);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -49,13 +49,13 @@ namespace WebDemo2.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            Trainee trainee = db.Trainees.Find(id);
+            Trainee_Course trainee = db.Trainee_Course.Find(id);
 
             return View(trainee);
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "No, Course_ID, Trainee_ID, Trainee_Name")] Trainee trainee)
+        public ActionResult Edit([Bind(Include = "No, Course_ID, Trainee_ID, Trainee_Name")] Trainee_Course trainee)
         {
             if (ModelState.IsValid)
             {
@@ -71,9 +71,9 @@ namespace WebDemo2.Controllers
         public ActionResult Delete(string id)
         {
 
-            Trainee trainee = db.Trainees.Find(id);
+            Trainee_Course trainee = db.Trainee_Course.Find(id);
 
-            db.Trainees.Remove(trainee);
+            db.Trainee_Course.Remove(trainee);
 
             db.SaveChanges();
 

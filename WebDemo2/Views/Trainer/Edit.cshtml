@@ -7,7 +7,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">Multiple Column</h4>
+        <h4 class="card-title">Edit Trainer</h4>
     </div>
     <div class="card-content">
         <div class="card-body">
@@ -35,7 +35,7 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4" })
-                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>

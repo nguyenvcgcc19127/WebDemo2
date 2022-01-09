@@ -1,0 +1,65 @@
+﻿@model WebDemo2.Models.Trainee
+@{
+    ViewBag.Title = "ViewProfile";
+    Layout = "~/Views/Trainee/Create.cshtml";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h1 class="m-0 font-weight-bold text-primary">Profile</h1>
+    </div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Trainee_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trainee_ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Trainee_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trainee_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_of_Birth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_of_Birth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Education)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Education)
+        </dd>
+
+    </dl>
+</div>
+<div class="col-12 d-flex justify-content-end">
+    <a class="nav-link" href="@Url.Action("EditViewProfile", "Trainer", new { id = Model.Trainee_ID })">
+        <button type="submit" class="btn btn-primary me-1 mb-1">
+            Edit
+        </button>
+    </a>
+</div>

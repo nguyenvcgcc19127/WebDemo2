@@ -36,24 +36,6 @@ namespace WebDemo2.Controllers
             return View();
         }
 
-        /*public ActionResult ProfileManagement()
-        {
-            return View();
-        }
-
-        public ActionResult ProfileManagement(string id)
-        {
-            if (id == "Trainer")
-            {
-                return RedirectToAction("Login", "Trainer");
-            }
-            if (id == "Trainee")
-            {
-                return RedirectToAction("Login", "Trainee");
-            }
-            return View();
-        }*/
-
         public ActionResult Logout()
         {
             Session.Clear();

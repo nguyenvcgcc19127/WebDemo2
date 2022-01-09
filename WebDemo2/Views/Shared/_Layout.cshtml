@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tables</title>
+    <title>FPT Training System</title>
 
     <!-- Custom fonts for this template -->
     <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -71,13 +71,25 @@
                         </div>
                     </div>
                 </li>
+            }
+                @if (HttpContext.Current.Session["Trainer"] != null)
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" href="@Url.Action("Index", "Trainer_Course")">
+                            <i class="fas fa-fw fa-table"></i>
+                            <span>View Course</span>
+                        </a>
+                    </li>
                 }
-                <li class="nav-item active">
-                    <a class="nav-link" href="tables.html">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>View Course</span>
-                    </a>
-                </li>
+                @if (HttpContext.Current.Session["Trainee"] != null)
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" href="@Url.Action("Index", "Trainee_Course")">
+                            <i class="fas fa-fw fa-table"></i>
+                            <span>View Course</span>
+                        </a>
+                    </li>
+                }
                 <li class="nav-item active">
                     <a class="nav-link" href="tables.html">
                         <i class="fas fa-fw fa-home"></i>
@@ -165,14 +177,13 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
                                      src="~/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                @if (HttpContext.Current.Session["Admin"] == null)
+                                @if (HttpContext.Current.Session["Admin"] == null && HttpContext.Current.Session["Trainee"] == null)
                                 {
                                     <a class="dropdown-item" href="@Url.Action("ViewProfile", "Trainer")">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -208,13 +219,13 @@
             </div>
             <!-- End of Main Content -->
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            @*<footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2020</span>
                     </div>
                 </div>
-            </footer>
+            </footer>*@
             <!-- End of Footer -->
 
         </div>
