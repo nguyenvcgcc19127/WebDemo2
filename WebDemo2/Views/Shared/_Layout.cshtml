@@ -40,7 +40,7 @@
         <ul class="navbar-nav bg-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "Home")">
                 <div><img src="~/img/uog.png" width="100%"></div>
             </a>
             <!-- Nav Item - Pages Collapse Menu -->
@@ -91,19 +91,19 @@
                     </li>
                 }
                 <li class="nav-item active">
-                    <a class="nav-link" href="tables.html">
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">
                         <i class="fas fa-fw fa-home"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="tables.html">
+                    <a class="nav-link" href="@Url.Action("Contact", "Home")">
                         <i class="fas fa-fw fa-phone"></i>
                         <span>Contact</span>
                     </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="tables.html">
+                    <a class="nav-link" href="@Url.Action("About", "Home")">
                         <i class="fas fa-fw fa-exclamation"></i>
                         <span>About</span>
                     </a>
