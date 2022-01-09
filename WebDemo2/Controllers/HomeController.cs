@@ -19,6 +19,7 @@ namespace WebDemo2.Controllers
             return View();
         }
 
+        //Split login roles
         public ActionResult LoginProcess(string id)
         {
             if(id == "Staff")

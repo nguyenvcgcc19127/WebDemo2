@@ -12,17 +12,21 @@ namespace WebDemo2.Controllers
     {
         Training db = new Training();
         // GET: Course
+        //When the user clicks on the Course tab, the system will point to the Index() function of the CourseController
         public ActionResult Index()
         {
             var list = db.Courses.ToList<Course>();
             return View(list);
         }
+
+        //When the user clicks the Create button on the Course page, the system will point to the Create() function (HttpGet method). 
         public ActionResult Create()
         {
 
             return View();
         }
 
+        //When the user clicks the Create button on the Create Course page, the system will point to the Create() function (HttpPost method) of the CourseController
         [HttpPost]
         public ActionResult Create([Bind(Include = "Course_ID, Course_Name, Course_Category, Description")] Course course)
         {
@@ -42,6 +46,8 @@ namespace WebDemo2.Controllers
             return View(course);
         }
 
+        //When the user clicks the Edit button on the Course page, the system will point to the Edit() function (HttpGet method) of the CourseController
+
         [HttpGet]
         public ActionResult Edit(string id)
         {
@@ -49,6 +55,8 @@ namespace WebDemo2.Controllers
 
             return View(Course);
         }
+
+        //When the user clicks the Save button on the Edit Course page, the system will point to the Edit() function (HttpPost method) of the CourseController.
 
         [HttpPost]
         public ActionResult Edit([Bind(Include = "Course_ID, Course_Name, Course_Category, Description")] Course course)
@@ -62,6 +70,7 @@ namespace WebDemo2.Controllers
             return View(course);
         }
 
+        //When the user clicks the Delete button on the Course page, a confirmation alert will be displayed
 
         [HttpGet]
         public ActionResult Delete(string id)

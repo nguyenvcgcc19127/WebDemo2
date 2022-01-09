@@ -14,12 +14,15 @@ namespace WebDemo2.Controllers
     {
         Training db = new Training();
         // GET: Trainer_Course
+
+        // Index() to display list of Trainer Course
         public ActionResult Index()
         {
             var list = db.Trainer_Course.ToList<Trainer_Course>();
             return View(list);
         }
 
+        // When the user clicks the Create button on the Trainer Course page, the system will point to the Create() function (HttpGet method) of Trainer_CourseController.
         [HttpGet]
         public ActionResult Create()
         {
@@ -27,6 +30,7 @@ namespace WebDemo2.Controllers
             return View();
         }
 
+        // When the user clicks the Create button on the Create Trainer Course page, the system will point to the Create() function (HttpPost method) of the Trainer_CourseController
         [HttpPost]
         public ActionResult Create([Bind(Include = "No, Course_ID, Trainer_ID, Trainer_Name")] Trainer_Course trainer)
         {
@@ -46,6 +50,8 @@ namespace WebDemo2.Controllers
             return View(trainer);
         }
 
+        // When the user clicks the Edit button on the Trainer Course page, the system will point to the Edit() function (HttpGet method) of Trainer_CourseController.
+
         [HttpGet]
         public ActionResult Edit(string id)
         {
@@ -54,6 +60,7 @@ namespace WebDemo2.Controllers
             return View(trainer);
         }
 
+        // When the user clicks the Edit button on the Trainer Coursec page, the system will point to the Edit() function (HttpPost method) of Trainer_CourseController.
         [HttpPost]
         public ActionResult Edit([Bind(Include = "No, Course_ID, Trainer_ID, Trainer_Name")] Trainer_Course trainer)
         {
@@ -66,7 +73,7 @@ namespace WebDemo2.Controllers
             return View(trainer);
         }
 
-
+        //When the user clicks the Delete button on the Trainer Course page, a confirmation alert will be displayed
         [HttpGet]
         public ActionResult Delete(string id)
         {

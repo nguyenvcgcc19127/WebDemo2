@@ -14,12 +14,15 @@ namespace WebDemo2.Controllers
     {
         Training db = new Training();
         // GET: Trainee
+
+        // Index() to display list of Trainee
         public ActionResult Index()
         {
             var list = db.Trainees.ToList<Trainee>();
             return View(list);
         }
 
+        // When the user clicks the Profile button on the Trainee page, the system will point to the ViewProfile() function (HttpGet method) of TraineeController.
         [HttpGet]
         public ActionResult ViewProfile()
         {
@@ -28,12 +31,14 @@ namespace WebDemo2.Controllers
             return View(trainee);
         }
 
-
+        //When the user run the web tab, the system will point to the Login() function (HttpGet method) of the TraineeController
         public ActionResult Login()
         {
 
             return View();
         }
+
+        //The user have to login with Trainee account to access the system
         [HttpPost]
         public ActionResult Login([Bind(Include = "Email, Password")] Trainee trainee)
         {
@@ -52,6 +57,7 @@ namespace WebDemo2.Controllers
             }
         }
 
+        //When the user clicks the Create button on the Trainee page, the system will point to the Create() function (HttpGet method)
         [HttpGet]
         public ActionResult Create()
         {
@@ -59,6 +65,7 @@ namespace WebDemo2.Controllers
             return View();
         }
 
+        //When the user clicks the Create button on the Create Trainee page, the system will point to the Create() function (HttpPost method)
         [HttpPost]
         public ActionResult Create([Bind(Include = "Trainee_ID, Trainee_Name, Email, Age, Date_of_Birth, Education, Password")] Trainee trainee)
         {
@@ -79,6 +86,7 @@ namespace WebDemo2.Controllers
             return View(trainee);
         }
 
+        //The function hash the password
         public static string EncodePassword(string Password)
         {
             //Declarations
@@ -95,6 +103,7 @@ namespace WebDemo2.Controllers
             return BitConverter.ToString(encodedBytes);
         }
 
+        //When the user clicks on the Edit button, the system will point to the Edit() function (HttpGet method) of the TraineeController along with the id of the selected trainee
         [HttpGet]
         public ActionResult Edit(string id)
         {
@@ -103,6 +112,7 @@ namespace WebDemo2.Controllers
             return View(trainee);
         }
 
+        //When the user clicks the Save button on the Edit Trainee page, the system will point to the Edit() function (HttpPost method). 
         [HttpPost]
         public ActionResult Edit([Bind(Include = "Trainee_ID, Trainee_Name, Email, Age, Date_of_Birth, Education, Password")] Trainee trainee)
         {
@@ -116,7 +126,7 @@ namespace WebDemo2.Controllers
             return View(trainee);
         }
 
-
+        //When the user clicks the Delete button on the Trainee page, a confirmation alert will be displayed
         [HttpGet]
         public ActionResult Delete(string id)
         {

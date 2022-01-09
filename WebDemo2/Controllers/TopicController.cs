@@ -12,17 +12,22 @@ namespace WebDemo2.Controllers
     {
         Training db = new Training();
         // GET: Topic
+
+        // Index() to display list of Category
         public ActionResult Index()
         {
             var list = db.Topics.ToList<Topic>();
             return View(list);
         }
+
+        // When the user clicks the Create button on the Topic page, the system will point to the Create() function (HttpGet method) of TopicController.
         public ActionResult Create()
         {
 
             return View();
         }
 
+        // When the user clicks the Create button on the Create Topic page, the system will point to the Create() function (HttpPost method) of the TopicController
         [HttpPost]
         public ActionResult Create([Bind(Include = "Topic_ID, Topic_Name, Course_ID")] Topic topic)
         {
@@ -42,6 +47,8 @@ namespace WebDemo2.Controllers
             return View(topic);
         }
 
+        // When the user clicks the Edit button on the Topic page, the system will point to the Edit() function (HttpGet method) of TopicController.
+
         [HttpGet]
         public ActionResult Edit(string id)
         {
@@ -50,6 +57,7 @@ namespace WebDemo2.Controllers
             return View(topic);
         }
 
+        // When the user clicks the Edit button on the Topic page, the system will point to the Edit() function (HttpPost method) of TopicController.
         [HttpPost]
         public ActionResult Edit([Bind(Include = "Topic_ID, Topic_Name, Course_ID")] Topic topic)
         {
@@ -62,7 +70,7 @@ namespace WebDemo2.Controllers
             return View(topic);
         }
 
-
+        //When the user clicks the Delete button on the Topic page, a confirmation alert will be displayed
         [HttpGet]
         public ActionResult Delete(string id)
         {

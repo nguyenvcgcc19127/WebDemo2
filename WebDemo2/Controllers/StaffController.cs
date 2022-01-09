@@ -16,18 +16,22 @@ namespace WebDemo2.Controllers
     {
         Training db = new Training();
         // GET: Staff
+
+        //When the user clicks on the Staff tab, the system will point to the Index() function (HttpGet method) of the StaffController
         public ActionResult Index()
         {
             var list = db.Staffs.ToList<Staff>();
             return View(list);
         }
 
+        //When the user run the web tab, the system will point to the Login() function (HttpGet method) of the StaffController
         public ActionResult Login()
         {
 
             return View();
         }
 
+        //The user have to login with Staff account to access the system
         [HttpPost]
         public ActionResult Login([Bind(Include = "Email, Password")] Staff staff)
         {
@@ -46,6 +50,7 @@ namespace WebDemo2.Controllers
             }
         }
 
+        //When the user clicks the Create button on the Staff page, the system will point to the Create() function (HttpGet method)
         [HttpGet]
         public ActionResult Create()
         {
@@ -53,6 +58,7 @@ namespace WebDemo2.Controllers
             return View();
         }
 
+        //When the user clicks the Create button on the Create Staff page, the system will point to the Create() function (HttpPost method). 
         [HttpPost]
         public ActionResult Create([Bind(Include = "Staff_ID, Staff_Name, Email, Age, Address, Password, Admin")] Staff staff)
         {
@@ -73,6 +79,7 @@ namespace WebDemo2.Controllers
             return View(staff);
         }
 
+        //The function hash the password
         public static string EncodePassword(string Password)
         {
             //Declarations
@@ -89,6 +96,7 @@ namespace WebDemo2.Controllers
             return BitConverter.ToString(encodedBytes);
         }
 
+        //When the user clicks on the Edit button, the system will point to the Edit() function (HttpGet method) of the StaffController along with the id of the selected staff
         [HttpGet]
         public ActionResult Edit(string id)
         {
@@ -96,6 +104,7 @@ namespace WebDemo2.Controllers
             return View(staff);
         }
 
+        //When the user clicks the Save button on the Edit Staff page, the system will point to the Edit() function (HttpPost method). 
         [HttpPost]
         public ActionResult Edit([Bind(Include = "Staff_ID, Staff_Name, Email, Age, Address, Password, Admin")] Staff staff)
         {
@@ -109,7 +118,7 @@ namespace WebDemo2.Controllers
             return View(staff);
         }
 
-
+        //When the user clicks the Delete button on the Staff page, a confirmation alert will be displayed
         [HttpGet]
         public ActionResult Delete(string id)
         {

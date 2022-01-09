@@ -14,20 +14,23 @@ namespace WebDemo2.Controllers
     {
         Training db = new Training();
         // GET: Trainer
+
+        // Index() to display list of Trainer Course
         public ActionResult Index()
         {
             var list = db.Trainers.ToList<Trainer>();
             return View(list);
         }
 
-        
 
+        //When the user run the web tab, the system will point to the Login() function (HttpGet method) of the TrainerController
         public ActionResult Login()
         {
 
             return View();
         }
 
+        // When the user clicks the Profile button on the Trainer page, the system will point to the ViewProfile() function (HttpGet method) of TrainerController.
         [HttpGet]
         public ActionResult ViewProfile()
         {
@@ -36,6 +39,7 @@ namespace WebDemo2.Controllers
             return View(trainer);
         }
 
+        //When the user clicks the Edie button on the Trainer page, the system will point to the EditViewProfile() function (HttpGet method)
         [HttpGet]
         public ActionResult EditViewProfile(string id)
         {
@@ -44,20 +48,10 @@ namespace WebDemo2.Controllers
             return View(trainer);
         }
 
+        //When the user clicks the Edit button on the Edit Trainer page, the system will point to the EditViewProfile() function (HttpPost method)
         [HttpPost]
         public ActionResult EditViewProfile([Bind(Include = "Trainer_ID, Trainer_Name, Email, Specialty, Age, Address, Password")] Trainer trainer)
         {
-            /*Trainer trainer = db.Trainers.ToList().Find(o => o.Email == Session["Email"].ToString());
-            if (ModelState.IsValid)
-            {
-                trainer.Trainer_Name = name;
-                trainer.Age = age;
-                trainer.Specialty = specialty;
-                trainer.Address = address;
-                db.SaveChanges();
-                return RedirectToAction("ViewProfile");
-            }
-            return View(trainer);*/
             var list = db.Trainers.ToList();
             if (list != null) 
             {
@@ -74,6 +68,7 @@ namespace WebDemo2.Controllers
         }
 
 
+        //The user have to login with Trainer account to access the system
         [HttpPost]
         public ActionResult Login([Bind(Include = "Email, Password")] Trainer trainer)
         {
@@ -92,6 +87,7 @@ namespace WebDemo2.Controllers
             }
         }
 
+        //When the user clicks the Create button on the Trainer page, the system will point to the Create() function (HttpGet method)
         [HttpGet]
         public ActionResult Create()
         {
@@ -99,6 +95,7 @@ namespace WebDemo2.Controllers
             return View();
         }
 
+        //When the user clicks the Create button on the Create Trainer page, the system will point to the Create() function (HttpPost method)
         [HttpPost]
         public ActionResult Create([Bind(Include = "Trainer_ID, Trainer_Name, Email, Specialty, Age, Address, Password")] Trainer trainer)
         {
@@ -119,6 +116,7 @@ namespace WebDemo2.Controllers
             return View(trainer);
         }
 
+        //The function hash the password
         public static string EncodePassword(string Password)
         {
             //Declarations
@@ -135,6 +133,7 @@ namespace WebDemo2.Controllers
             return BitConverter.ToString(encodedBytes);
         }
 
+        //When the user clicks on the Edit button, the system will point to the Edit() function (HttpGet method) of the TrainerController along with the id of the selected trainee
         [HttpGet]
         public ActionResult Edit(string id)
         {
@@ -143,6 +142,7 @@ namespace WebDemo2.Controllers
             return View(trainer);
         }
 
+        //When the user clicks the Save button on the Edit Trainer page, the system will point to the Edit() function (HttpPost method). 
         [HttpPost]
         public ActionResult Edit([Bind(Include = "Trainer_ID, Trainer_Name, Email, Specialty, Age, Address, Password")] Trainer trainer)
         {
@@ -156,7 +156,7 @@ namespace WebDemo2.Controllers
             return View(trainer);
         }
 
-
+        //When the user clicks the Delete button on the Trainer page, a confirmation alert will be displayed
         [HttpGet]
         public ActionResult Delete(string id)
         {
